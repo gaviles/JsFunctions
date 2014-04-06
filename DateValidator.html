@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>QUnit Example</title>
+  <link rel="stylesheet" href="qunit-1.14.0.css">
+</head>
+<body>
+  <div id="qunit"></div>
+  <div id="qunit-fixture"></div>
+  <script src="qunit-1.14.0.js"></script>
+  <script>
+  	function testDate( sDate ){
+
+  		// verifica que la fecha pesea el formato correcto
+  		var regexDate = /[0-9]{4}-[0-9]{1,2}-[0-9]{1,2}/;
+
+  		if( !regexDate.test(sDate) ){
+  			return false;
+  		}
+
+  		// Divide the sDate sting in to an array using "-" divitions
+
+  		var aDate = sDate.split("-");
+
+  		console.log(aDate);
+
+  		// first check the length pf the array
+
+  		if( aDate.length !== 3 ){
+  			console.log("return false");
+  			return false;
+  		}
+
+  		// Detetect if the date was weel write
+  		var oDate = new Date(sDate[0],(sDate[1]-1),sDate[2]);
+
+  		// Detect if the year is correct
+  		if( oDate.getFullYear() !== sDate[0] ){
+  			return false;
+  		}
+  		// Detect if the month is correct
+  		if( ( oDate.getMonth() + 1 ) !== sDate[0] ){
+  			return false;
+  		}
+
+  		// Detect if the day is correct
+  		if( ( oDate.getDate() + 1900 ) !== sDate[0] ){
+  			return false;
+  		}
+
+  		return true;
+  	}
+
+  	test("Date test", function(){
+  		equal( false,testDate("2014-02"), "Detecta fechas incompletas o mal escritas" );
+  		equal( false,testDate("2014-02-30"),"Detecta fechas imposibles" );
+  		equal( false,testDate("2014-12-32"),"Detecta fechas imposibles" );
+  		equal( false,testDate("2014-13-30"),"Detecta fechas imposibles" );
+  		equal( false,testDate("2014-2-29"),"Detecta mal uso del 29 de febrero (año no viciesto)" );
+  		equal( false,testDate("asdf-qw-tr"),"Detecta fecha no numérica" );
+
+  	} )
+
+
+  </script>
+</body>
+</html>
