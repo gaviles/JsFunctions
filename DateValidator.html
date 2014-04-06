@@ -13,56 +13,49 @@
 function testDate( sDate ){
 
   /*
-	 * verifica que la fecha pesea el formato correcto
+   * verifica que la fecha pesea el formato correcto
    * verifica que los primeros 4 caracteres deben ser números seguidos de un "-""
    * luego deben haver entre 1 y 2 caracteres numericos, seguidos por un "-"
    * finalmente debe terminar entre 1 y 2 caracteres también numericos
    */
-	var regexDate = /[0-9]{4}-[0-9]{1,2}-[0-9]{1,2}$/;
+  var regexDate = /[0-9]{4}-[0-9]{1,2}-[0-9]{1,2}$/;
 
-	if( !regexDate.test(sDate) ){
-		return false;
-	}
+  if( !regexDate.test(sDate) ){
+  	return false;
+  }
 
-	// Divide the sDate sting in to an array using "-" divitions
-	var aDate = sDate.split("-");
+  // Divide the sDate sting in to an array using "-" divitions
+  var aDate = sDate.split("-");
 
-	console.log(aDate);
-
-	// first check the length pf the array
-	if( aDate.length !== 3 ){
-    console.log("mal largo");
-		return false;
-	}
+  // first check the length pf the array
+  if( aDate.length !== 3 ){
+  	return false;
+  }
 
   // Parse the number to compare
   aDate[0] = parseInt(aDate[0]);
   aDate[1] = parseInt(aDate[1]);
   aDate[2] = parseInt(aDate[2]);
 
-	// Detetect if the date was weel write
-	var oDate = new Date(aDate[0],(aDate[1]-1),aDate[2]);
-  console.log(oDate);
+  // Detetect if the date was weel write
+  var oDate = new Date(aDate[0],(aDate[1]-1),aDate[2]);
 
-	// Detect if the year is correct
-	if( oDate.getFullYear() != aDate[0] ){
-    console.log("mal año",oDate.getFullYear(),aDate[0])
-		return false;
-	}
-	// Detect if the month is correct
-	if( (oDate.getMonth()+1) != aDate[1] ){
-    console.log("mal mes",oDate.getMonth(),aDate[1])
-		return false;
-	}
+  // Detect if the year is correct
+  if( oDate.getFullYear() != aDate[0] ){
+  	return false;
+  }
+  // Detect if the month is correct
+  if( (oDate.getMonth()+1) != aDate[1] ){
+  	return false;
+  }
 
-	// Detect if the day is correct
-	if( oDate.getDate() != aDate[2] ){
-    console.log("mala fecha",oDate.getDate(),aDate[2])
-		return false;
-	}
+  // Detect if the day is correct
+  if( oDate.getDate() != aDate[2] ){
+  	return false;
+  }
 
   // La fecha es válida =]
-	return true;
+  return true;
 }
 
 test("Date test", function(){
