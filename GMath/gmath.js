@@ -10,7 +10,7 @@ $("[gmath]").each( function( i, e){
 		e.gmath.type = "function";
 		e.gmath.f = attr.slice(1);
 	}else{
-		gmathBind.on("keyup", function(){ gmathUpdate(); });
+		gmathBind.on("input", function(){ gmathUpdate(); });
 		if( e.value == "" ){
 			e.value = 0;
 		}
